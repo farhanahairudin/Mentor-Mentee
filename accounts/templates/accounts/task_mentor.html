@@ -1,0 +1,124 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="total-tasks">
+                <div class="card-header">
+                    <h5 class="card-title">Total Tasks</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{task_count}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="tasks-completed">
+                <div class="card-header">
+                    <h5 class="card-title">Percentage of Completed Tasks</h5>
+                </div>
+                <div class="card-body">
+                	<h3 class="card-title">{{perc}} %</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="tasks-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Pending Tasks</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{pending}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	<br>
+
+<div class="row">
+	<div class="col-md" style="margin-left: 20px;">
+		<div class="card card-body" style="padding-bottom: 70px;">
+			<h5>Task:</h5>
+			<hr>
+			<a class="btn btn-lg btn-info" style="margin-top: 20px;" href="{% url 'create_task' match.id %}">Create Task</a>
+
+		</div>
+	</div>
+
+	<div class="col-md" style="margin-right: 20px;">
+		<div class="card card-body">
+			<h5>Mentee</h5>
+			<hr>
+			<p>Name: {{match.mentee}} </p>
+			<p>Date matched: {{match.date_matched}}</p>
+			<p>Status: {{match.status}} </p>
+		</div>
+	</div>
+
+<!-- 	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Goals</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{goal_count}}</h1>
+		</div>
+	</div> -->
+</div>
+
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body" style="margin-left: 20px; margin-right: 20px;">
+			<h5>LIST OF TASK</h5>
+			<hr>
+
+			<form method="get">
+			{{myFilter.form}} 
+		    <button class="btn btn-info" style="margin-left: 20px;" type="submit">Search</button>
+		  	</form>
+
+		  	<br>
+			<table class="table">
+
+				<tr>
+					<!-- <th>Mentee</th> -->
+					<th>Task</th>
+					<th>Subject</th>
+					<th>Date Created</th>
+					<th>File Uploaded</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for task in tasks %}
+					<tr>
+						<!-- <th>{{task.mentee}}</th> -->
+						<th>{{task.task_title}}</th>
+						<th>{{task.subject}}</th>
+						<th>{{task.date_created}}</th>
+						<th>{{task.document}}</th>
+						<th>{{task.status}}</th>
+						<td><a class="btn btn-sm btn-warning" href="{% url 'update_task' task.id %}">Update</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Remove</a></td>
+					</tr>
+				{% endfor %}
+						
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

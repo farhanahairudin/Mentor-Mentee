@@ -1,0 +1,75 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+
+	<div class="col-md" style="margin-left: 50px;">
+		<div class="card card-body">
+			<h5>Mentor</h5>
+			<hr>
+			<p>Name: {{match.mentor}} </p>
+			<p>Date matched: {{match.date_matched}}</p>
+			<p>Status: {{match.status}} </p>
+		</div>
+	</div>
+
+	<div class="col-md" style="margin-right: 50px;">
+		<div class="card card-body" style="padding-bottom: 63px;">
+			<h5>Total Sessions</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{session_count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body" style="margin-left: 50px; margin-right: 50px;">
+
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body" style="margin-left: 50px; margin-right: 50px;">
+			<table class="table table-sm">
+				<tr>
+					<th>Session</th>
+					<th>Date</th>
+					<th>Location</th>
+					<th>Status</th>
+					<th class="text-center">Update Slot</th>
+				</tr>
+
+				{% for session in sessions %}
+				<!-- buat yg ni kena tengok nama sama dgn models.py -->
+				<tr>
+					<td>{{session.name}}</td>
+					<td>{{session.setup_date}}</td>
+					<td>{{session.location}}</td>
+					<td>{{session.status}}</td>
+					<td class="text-center"><a class="btn btn-sm btn-info" href="{% url 'update_session' session.id %}">Update</a></td>
+				</tr>
+
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

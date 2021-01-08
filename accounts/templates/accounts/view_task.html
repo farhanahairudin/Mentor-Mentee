@@ -1,0 +1,115 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<style>
+	div1 {
+		padding: 15px;
+	}
+</style>
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="total-tasks">
+                <div class="card-header">
+                    <h5 class="card-title">Total Tasks</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{task_count}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="tasks-completed">
+                <div class="card-header">
+                    <h5 class="card-title">Percentage of Completed Tasks</h5>
+                </div>
+                <div class="card-body">
+                	<h3 class="card-title">{{perc}} %</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="tasks-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Pending Tasks</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{pending}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	<br>
+
+<div class="row">
+	<div class="col-md" style="margin-left: 20px;">
+		<div class="card card-body">
+			<h5>Mentee</h5>
+			<hr>
+			<p>Name: {{match.mentor}} </p>
+			<p>Date matched: {{match.date_matched}}</p>
+			<p>Status: {{match.status}} </p>
+		</div>
+	</div>
+
+	<div class="col" style="margin-right: 20px;">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form.as_p}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+</div>
+
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body" style="margin-left: 20px; margin-right: 20px;">
+			<h5>LIST OF TASK</h5>
+		  	<br>
+			<table class="table">
+
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Subject</th>
+					<!-- <th>Date Created</th> -->
+					<th>Status</th>
+					<th>View file at: /media/filename</th>
+				</tr>
+
+				{% for task in tasks %}
+					<tr>
+						<th>{{task.task_title}}</th>
+						<th>{{task.description}}</th>
+						<th>{{task.subject}}</th>
+						<!-- <th>{{task.date_created}}</th> -->
+						<th>{{task.status}}</th>
+						<th>{{task.document}}</th>
+					</tr>
+				{% endfor %}
+						
+			</table>
+		</div>
+	</div>
+</div>
+
+	
+{% endblock %}

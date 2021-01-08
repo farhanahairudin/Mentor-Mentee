@@ -1,0 +1,24 @@
+
+	#logo{
+	}	
+
+	body{
+		background-color: #ebeff5;
+	}
+
+	#total-tasks{
+		background-color: #4cb4c7;
+	}
+
+	#tasks-completed{
+		background-color: #7abecc;
+	}
+
+	#tasks-pending{
+		background-color: #7CD1C0;
+	}
+
+	nav a{
+		padding: 10px;
+	}
+

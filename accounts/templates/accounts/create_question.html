@@ -1,0 +1,24 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="row justify-content-center">	
+	<div class="col-md-5">
+	
+			<div class="card border-info bg-light mb-3 card-body">
+				<div class="card text-white bg-info mb-3 card-body mb-4">
+						<h3 class="text-center">Create Question</h3>
+					</div>
+				
+				<form method="POST" action="">
+					{% csrf_token %}
+					{{form.as_p}}
+					<input class="btn btn-primary" type="submit" name="create-goal">
+				</form>
+				
+			</div>
+		
+	</div>
+</div>
+{% endblock %}

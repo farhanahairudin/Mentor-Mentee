@@ -1,0 +1,27 @@
+/* Print stylesheet */
+
+@media print {
+	*{
+		background: transparent !important;
+		color: #000 !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	hr {
+		display: none;
+	}
+
+	footer {
+		display: none;
+	}
+
+	.print {
+		display: none;
+	}
+
+	#printbtn {
+        display :  none;
+    }
+}
+

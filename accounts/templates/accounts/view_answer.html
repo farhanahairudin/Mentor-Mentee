@@ -1,0 +1,49 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+<div class="row">
+	<div class="col-md" style="margin-left: 20px; margin-right: 20px;">
+		<div class="card card-body">
+			<br>
+			<hr>
+			<h5 class="text-center">Question: {{question.title}}</h5>
+			<hr>
+			<a class="btn btn-primary" href="{% url 'create_answer' question.id %}">Add Answer</a>
+			<hr>
+			<br>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md" style="margin-left: 20px; margin-right: 20px;">
+		<div class="card card-body">
+
+			<table class="table">
+
+				<tr>
+					<th>Answer</th>
+					<th>Is Right</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for answer in answer %}
+					<tr>
+						<td>{{answer.answer_text}}</td>
+						<td>{{answer.is_right}}</td>
+						<td><a class="btn btn-sm btn-warning" href="{% url 'update_answer' question.id %}">Update</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_answer' question.id %}">Remove</a></td>
+					</tr>
+				{% endfor %} 
+						
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

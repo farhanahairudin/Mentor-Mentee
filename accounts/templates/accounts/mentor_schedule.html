@@ -1,0 +1,76 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+
+	<div class="col-md" style="margin-left: 50px;">
+		<div class="card card-body">
+			<h5>Mentee</h5>
+			<hr>
+			<p>Name: {{match.mentee}}</p>
+			<p>Date matched: {{match.date_matched}}</p>
+			<p>Status: {{match.status}} </p>
+		</div>
+	</div>
+
+	<div class="col-md" style="margin-right: 50px;">
+		<div class="card card-body" style="padding-bottom: 62px;">
+			<h5>Total Sessions</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{accepted}}</h1>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md" style="margin-left: 50px; margin-right: 50px;">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Session</th>
+					<th>Date</th>
+					<th>Location</th>
+					<th>Status</th>
+					
+				</tr>
+
+				{% for session in accepted_sess %}
+				
+				<tr>
+					<td>{{session.name}}</td>
+					<td>{{session.setup_date}}</td>
+					<td>{{session.location}}</td>
+					<td>{{session.status}}</td>
+					
+				</tr>
+
+				{% endfor %}
+
+			</table>
+			<a id="printpagebutton" style="margin-left: 400px; margin-right: 400px; margin-top: 10px;" class="btn btn-sm btn-info" onClick="printpage()">Print Schedule</a>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<script type="text/javascript">
+	  function printpage() {
+        //Get the print button and put it into a variable
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        //Print the page content
+        window.print()
+        //Set the print button to 'visible' again 
+        //[Delete this line if you want it to stay hidden after printing]
+        printButton.style.visibility = 'visible';
+    }
+</script>
+
+{% endblock %}

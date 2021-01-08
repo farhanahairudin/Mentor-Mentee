@@ -1,0 +1,129 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="total-tasks">
+                <div class="card-header">
+                    <h5 class="card-title">Total Goal</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{goal_count}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="tasks-completed">
+                <div class="card-header">
+                    <h5 class="card-title">Percentage of Completed Goals</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{round_perc}} %</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="tasks-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Active Goals</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{active}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	<br>
+
+<div class="row">
+
+	<div class="col-md" style="margin-left: 20px;">
+		<div class="card card-body">
+			<h5>Mentor</h5>
+			<hr>
+			<p>Name: {{match.mentor}} </p>
+			<p>Date matched: {{match.date_matched}}</p>
+			<p>Status: {{match.status}} </p>
+		</div>
+	</div>
+
+		<div class="col" style="margin-right: 20px;">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form.as_p}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+
+	<!-- <div class="col-md">
+		<div class="card card-body">
+			<h5>Total Goals</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{goal_count}}</h1>
+		</div>
+	</div> -->
+</div>
+
+
+<!-- <br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div> -->
+<br>
+
+<div class="row">
+	<div class="col-md" style="margin-left: 20px; margin-right: 20px;">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Title</th>
+					<th>Category</th>
+					<th>Description</th>
+					<th>Status</th>
+				</tr>
+
+				{% for goal in goals %}
+				<!-- buat yg ni kena tengok nama sama dgn models.py -->
+				<tr>
+					<td>{{goal.title}}</td>
+					<td>{{goal.category}}</td>
+					<td>{{goal.description}}</td>
+					<td>{{goal.status}}</td>
+				</tr>
+
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="card card-body">
+	<h5>Your Advertisements</h5>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body" style="padding-bottom: 100px;">
+			<br>
+			<br>
+			<a style="margin-top: 90px;" class="btn btn-primary" href="{% url 'create_ad2' mentor.id %}">Create Advertisement</a>
+			<br>
+			<br>
+		</div>
+	</div>
+
+<br>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<form method="get">
+				<p>{{myFilter.form.as_p}}</p>
+				<button class="btn btn-info btn-big" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<br>
+
+	<div class="card card-body">
+			<table class="table">
+
+				<tr>
+					<th>Advertisement</th>
+					<th>Description</th>
+					<th>Category</th>
+					<th>Price</th>
+					<th>Published on</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+			{% for ad in ads %}
+					<tr>
+						<th>{{ad.ad_title}}</th>
+						<th>{{ad.description}}</th>
+						<th>{{ad.category}}</th>
+						<th>{{ad.price}}</th>
+						<th>{{ad.publish}}</th>
+						<td><a class="btn btn-sm btn-warning" href="{% url 'update_ad2' ad.id %}">Update</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_ad2' ad.id %}">Remove</a></td>
+					</tr>
+
+				{% endfor %}
+							
+			</table>
+	</div>
+
+{% endblock %}

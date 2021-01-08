@@ -1,0 +1,82 @@
+<head>
+<style>
+    @page {
+        size: a4 portrait;
+        @frame header_frame {           /* Static Frame */
+            -pdf-frame-content: header_content;
+            left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+        }
+        @frame content_frame {          /* Content Frame */
+            left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+        }
+        
+    }
+</style>
+</head>
+
+<body>
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header_content">
+    	<h1>Report for</h1>
+    </div>
+
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div id="footer_content">(c) - page <pdf:pagenumber>
+        of <pdf:pagecount>
+    </div>
+
+    <!-- HTML Content -->
+
+
+    <table>
+    		<tr>
+    			<td>Name:</td>
+    			<td>{{match.mentor}}</td>
+    		</tr>
+    		<!-- <tr>
+    			<td>Matric Number:</td>
+    			<td>{{match.date}}</td>
+    		</tr>
+    		<tr>
+    			<td>Faculty:</td>
+    			<td>{{mentee.faculty}}</td>
+    		</tr>
+            <tr>
+                <td>Department:</td>
+                <td>{{mentee.department}}</td>
+            </tr> -->
+    </table>
+
+    <hr>
+
+    <table>
+    	<tr>
+                    <th>Session</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                </tr>
+
+                {% for session in accepted_sess %}
+                
+                <tr>
+                    <td>{{session.name}}</td>
+                    <td>{{session.setup_date}}</td>
+                    <td>{{session.location}}</td>
+                    <td>{{session.status}}</td>
+                </tr>
+
+                {% endfor %}
+
+
+    </table>
+
+    <hr>
+
+    <p><strong>CGPA: {{mentee.CGPA}}</strong></p>
+</body>
+</html>

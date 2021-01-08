@@ -1,0 +1,74 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md" style="margin-left: 20px;">
+		<div class="card card-body" style="padding-bottom: 70px;">
+			<h5>Quiz:</h5>
+			<hr>
+			<a class="btn btn-lg btn-info" style="margin-top: 20px;" href="{% url 'create_quiz' match.id %}">Create a new quiz!</a>
+
+		</div>
+	</div>
+
+	<div class="col-md" style="margin-right: 20px;">
+		<div class="card card-body">
+			<h5>Mentee</h5>
+			<hr>
+			<p>Name: {{match.mentee}} </p>
+			<p>Date matched: {{match.date_matched}}</p>
+			<p>Status: {{match.status}} </p>
+		</div>
+	</div>
+
+<!-- 	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Goals</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{goal_count}}</h1>
+		</div>
+	</div> -->
+</div>
+<br>
+<div class="row">
+	<div class="col-md" style="margin-left: 20px; margin-right: 20px;">
+		<div class="card card-body">
+			<h5 class="text-center">Quizzes</h5>
+			<hr>
+
+			<form method="get">
+			{{myFilter.form}}
+		    <button style="margin-left: 20px;" class="btn btn-info" type="submit">Search</button>
+		  	</form>
+
+		  	<br>
+			<table class="table">
+
+				<tr>
+					<!-- <th>Mentee</th> -->
+					<th>Quiz</th>
+					<th>Date Created</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for quiz in quizzes %}
+					<tr>
+						<!-- <th>{{category.mentee}}</th> -->
+						<th>{{quiz.title}}</th>
+						<th>{{quiz.date_created}}</th>
+						<td><a class="btn btn-sm btn-warning" href="{% url 'update_quiz' quiz.id %}">Update</a></t>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_quiz' quiz.id %}">Remove</a></td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'quiz_details' quiz.id %}">View Details</a></td>
+					</tr>
+				{% endfor %}
+						
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

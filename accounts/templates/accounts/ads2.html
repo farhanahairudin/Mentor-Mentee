@@ -1,0 +1,139 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<form method="get">
+				<p>{{myFilter.form.as_p}}</p>
+				<button class="btn btn-info btn-big" type="submit">Search</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="card card-body" style="padding-bottom: 75px;">
+			<a class="btn btn-primary" style="margin-top: 100px;" href="{% url 'create_ad2' mentor.id %}">Create Advertisement</a>
+			<br>
+			<h6 class="text-center">or</h6>
+			<br>
+			<a class="btn btn-info" href="{% url 'user_ad2' mentor.id %}">View Your Advertisements</a>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Advertisements</h5>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="card card-body">
+			<table class="table">
+
+				<tr>
+					<th>Advertisement</th>
+					<th>Description</th>
+					<th>Category</th>
+					<th>Price</th>
+					<th>Published on</th>
+					<th>Published by</th>
+				</tr>
+
+				{% for ad2 in ads2 %}
+					<tr>
+						<th>{{ad2.ad_title}}</th>
+						<th>{{ad2.description}}</th>
+						<th>{{ad2.category}}</th>
+						<th>{{ad2.price}}</th>
+						<th>{{ad2.publish}}</th>
+						<th>{{ad2.mentor}}</th>
+					</tr>
+
+				{% endfor %}
+
+				{% for ad in ads %}
+					<tr>
+						<th>{{ad.ad_title}}</th>
+						<th>{{ad.description}}</th>
+						<th>{{ad.category}}</th>
+						<th>{{ad.price}}</th>
+						<th>{{ad.publish}}</th>
+						<th>{{ad.mentee}}</th>
+					</tr>
+
+				{% endfor %}
+							
+			</table>
+	</div>
+
+<!-- <br>
+
+<div class="row">
+		<div class="col-lg-6">
+			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+			<div class="box-element product">
+				<h6><strong>Book</strong></h6>
+				<hr>
+
+				<a class="btn btn-outline-success" href="#">View</a>
+				<h4 style="display: inline-block; float: right"><strong>RM20</strong></h4>
+
+			</div>
+		</div>
+
+	<br>
+
+		<div class="col-lg-6">
+			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+			<div class="box-element product">
+				<h6><strong>Book</strong></h6>
+				<hr>
+				
+				<a class="btn btn-outline-success" href="#">View</a>
+				<h4 style="display: inline-block; float: right"><strong>RM20</strong></h4>
+				
+			</div>
+		</div>
+
+	<br>
+
+		<div class="col-lg-6">
+			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+			<div class="box-element product">
+				<h6><strong>Book</strong></h6>
+				<hr>
+
+				<a class="btn btn-outline-success" href="#">View</a>
+				<h4 style="display: inline-block; float: right"><strong>RM20</strong></h4>
+
+			</div>
+		</div>
+
+	<br>
+
+		<div class="col-lg-6">
+			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+			<div class="box-element product">
+				<h6><strong>Book</strong></h6>
+				<hr>
+
+				<a class="btn btn-outline-success" href="#">View</a>
+				<h4 style="display: inline-block; float: right"><strong>RM20</strong></h4>
+
+			</div>
+		</div>
+	</div>
+			
+</div> -->
+	
+{% endblock %}

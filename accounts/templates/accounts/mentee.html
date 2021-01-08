@@ -1,0 +1,58 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+
+<br>
+
+<div class="row">
+<!--     <div class="col-md-5">
+        <h5>Goal & Session Modules:</h5>
+        <hr>
+        <div class="card card-body">
+   
+            <table class="table table-sm">
+                <tr>
+                    <th class="text-center">Mentor</th>
+                    <th class="text-center">Goal</th>
+                    <th class="text-center">Session</th>
+                </tr>
+
+                {% for match in matchs %}
+                <tr>
+                	<td class="text-center">{{match.mentor}}</td>
+                	<td class="text-center"><a class="btn btn-sm btn-info" href="{% url 'view_goal' match.id %}">View</a></td>
+                    <td class="text-center"><a class="btn btn-sm btn-info" href="{% url 'book_session' match.id %}">Book</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div> -->
+
+    <div class="col-md" style="margin-left: 50px; margin-right: 50px;">
+        <h5>Mentor you match with</h5>
+        <hr>
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th class="text-center" style=" padding: 15px;">Mentor</th>
+                    <th class="text-center" style=" padding: 15px;">Mentee</th>
+                    <th class="text-center" style=" padding: 15px;">Date Matched</th>
+                    <th class="text-center" style=" padding: 15px;">Status</th>
+                    <th class="text-center" style=" padding: 15px;">Remove Match?</th>
+                </tr>
+                {% for match in matchs %}
+                <tr>
+                	<td class="text-center" style=" padding: 15px;">{{match.mentor}}</td>
+                	<td class="text-center" style=" padding: 15px;">{{match.mentee}}</td>
+                	<td class="text-center" style=" padding: 15px;">{{match.date_matched}}</td>
+                	<td class="text-center" style=" padding: 15px;">{{match.status}}</td>
+                	<td class="text-center" style=" padding: 15px;"><a class="btn btn-sm btn-danger" href="{% url 'delete_match' match.id %}">Unmatch</a></td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

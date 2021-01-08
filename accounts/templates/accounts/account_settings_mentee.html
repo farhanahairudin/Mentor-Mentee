@@ -1,0 +1,88 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+
+	.profile-pic{
+		max-width: 200px;
+		max-height: 200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+
+</style>
+
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body" style="padding-bottom: 100px;">
+			<a class="btn btn-warning" href="{% url 'home' %}">Back to Dashboard</a>
+			<hr>
+			<h3 style="text-align: center;">Account Profile</h3>
+			<hr>
+			<img style="margin-top: 20px;" class="profile-pic" src="{{request.user.mentee.profile_pic.url}}">
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{form.as_p}}
+				<input class="btn btn-primary" type="submit" name="Update Information">
+
+			</form>
+
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="card card-body" style="margin-left: 20px; margin-right: 20px;">
+		<hr>
+		<h4 class="text-center">Results</a>
+		<hr>
+		<a class="btn btn-info" href="{% url 'pdf_view' %}" target="_blank">View Report</a>
+		<a class="btn btn-info"  href="{% url 'pdf_download' %}">Download Report</a>
+		</h4>
+		<hr>
+		<a class="btn btn-outline-primary" href="{% url 'create_result' mentee.id %}" >Add a Result</a>
+		<hr>
+
+		<form method="get">
+		{{myFilter.form}}
+		<button class="btn btn-info" style="margin-left: 20px;" type="submit">Search</button>
+		</form>
+
+		<br>
+		<table class="table">
+
+				<tr>
+					<th>Result</th>
+					<th>Semester</th>
+					<th>Subject</th>
+					<th>Grade</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for result in results %}
+
+					<tr>
+						<th>{{result.types}}</th>
+						<th>{{result.semester}}</th>
+						<th>{{result.subject}}</th>
+						<th>{{result.grade}}</th>
+						<td><a class="btn btn-sm btn-warning" href="{% url 'update_result' result.id %}">Update</a></td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_result' result.id %}">Remove</a></td>
+					</tr>
+				{% endfor %}
+						
+			</table>
+
+	</div>
+</div>
+
+
+{% endblock %}

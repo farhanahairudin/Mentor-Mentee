@@ -1,0 +1,38 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md" style="margin-left: 20px; margin-right: 20px; padding: 10px;">
+        <br>
+        <h5>Modules:</h5>
+        <hr>
+        <div class="card card-body" style=" padding: 30px;">
+   
+            <table class="table table-sm">
+                <tr>
+                    <th style=" padding: 15px;">Assigned Mentee</th>
+                    <th class="text-center" style=" padding: 15px;">Goal Module</th>
+                    <th class="text-center" style=" padding: 15px;">Session Module</th>
+                    <th class="text-center" style=" padding: 15px;">Task Module</th>
+                    <th class="text-center" style=" padding: 15px;">Quiz Module</th>
+                    <th class="text-center" style=" padding: 15px;">Schedule</th>
+                </tr>
+
+                {% for match in matchs %}
+                <tr>
+                    <td style=" padding: 15px;">{{match.mentee}}</td>
+                    <td class="text-center" style=" padding: 15px;"><a class="btn btn-sm btn-block btn-info" href="{% url 'goal_page' match.id %}">View</a></td>
+                    <td class="text-center" style=" padding: 15px;"><a class="btn btn-sm btn-block btn-secondary" href="{% url 'mentor_session' match.id %}">Update</a></td>
+                    <td class="text-center" style=" padding: 15px;"><a class="btn btn-sm btn-block btn-danger" href="{% url 'mentor_task' match.id %}">View</a></td>
+                    <td class="text-center" style=" padding: 15px;"><a class="btn btn-sm btn-block btn-success" href="{% url 'mentor_quiz' match.id %}">View</a></td>
+                    <td class="text-center" style=" padding: 15px;"><a class="btn btn-sm btn-block btn-warning" href="{% url 'mentor_schedule' match.id %}">View</a></td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
